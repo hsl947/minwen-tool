@@ -130,10 +130,10 @@ export default function MyApp() {
       {/*  <Input type='text' value={oriData} onChange={e => setOriData(e.target.value)} placeholder="非必填，原始数据" onBlur={e => stringToHex(e.target.value)} />*/}
       {/*</FormControl>*/}
 
-      {/*<FormControl pt={2}>*/}
-      {/*  <FormLabel>自定义data</FormLabel>*/}
-      {/*  <Input type='text' value={hexData} onChange={e => setHexData(e.target.value)} placeholder="非必填，十六进制数据" />*/}
-      {/*</FormControl>*/}
+      <FormControl pt={2}>
+        <FormLabel>自定义data</FormLabel>
+        <Input type='text' value={hexData} onChange={e => setHexData(e.target.value)} placeholder="非必填，十六进制数据" />
+      </FormControl>
 
       <FormControl pt={2}>
         <FormLabel>自定义gas</FormLabel>
