@@ -22,17 +22,29 @@ export default function MyApp() {
 
   const [address, setAddress] = useState('');
   const [amount, setAmount] = useState(0);
+  const [oriData, setOriData] = useState('');
   const [hexData, setHexData] = useState('');
   const [customGas, setCustomGas] = useState('');
   const [count, setCount] = useState(1);
   const [account, setAccount] = useState('');
   const [web3, setWeb3] = useState(null);
 
+  // 字符转十六进制
+  function stringToHex(str){
+    console.log("=>(page.js:34) str", str);
+    if(!str) return
+    let val= "";
+    for(let i = 0; i < str.length; i++){
+      val = val + str.charCodeAt(i).toString(16);
+    }
+    setHexData(`0x${val}`)
+  }
 
   async function init() {
     const web3Obj = new Web3(window.ethereum);
     const accounts = await web3Obj.eth.requestAccounts()
     setAccount(accounts[0])
+    setAddress(accounts[0])
     setWeb3(web3Obj)
   }
 
@@ -113,10 +125,15 @@ export default function MyApp() {
         </NumberInput>
       </FormControl>
 
-      <FormControl pt={2}>
-        <FormLabel>自定义data</FormLabel>
-        <Input type='text' value={hexData} onChange={e => setHexData(e.target.value)} placeholder="非必填，十六进制数据" />
-      </FormControl>
+      {/*<FormControl pt={2}>*/}
+      {/*  <FormLabel>自定义data - 原始串</FormLabel>*/}
+      {/*  <Input type='text' value={oriData} onChange={e => setOriData(e.target.value)} placeholder="非必填，原始数据" onBlur={e => stringToHex(e.target.value)} />*/}
+      {/*</FormControl>*/}
+
+      {/*<FormControl pt={2}>*/}
+      {/*  <FormLabel>自定义data</FormLabel>*/}
+      {/*  <Input type='text' value={hexData} onChange={e => setHexData(e.target.value)} placeholder="非必填，十六进制数据" />*/}
+      {/*</FormControl>*/}
 
       <FormControl pt={2}>
         <FormLabel>自定义gas</FormLabel>
