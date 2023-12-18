@@ -30,8 +30,8 @@ export default function MyApp() {
   const [web3, setWeb3] = useState(null);
 
   // 字符转十六进制
-  function stringToHex(str){
-    console.log("=>(page.js:34) str", str);
+  function stringToHex(){
+    const str = oriData.trim()
     if(!str) return
     let val= "";
     for(let i = 0; i < str.length; i++){
@@ -125,13 +125,18 @@ export default function MyApp() {
         </NumberInput>
       </FormControl>
 
-      {/*<FormControl pt={2}>*/}
-      {/*  <FormLabel>自定义data - 原始串</FormLabel>*/}
-      {/*  <Input type='text' value={oriData} onChange={e => setOriData(e.target.value)} placeholder="非必填，原始数据" onBlur={e => stringToHex(e.target.value)} />*/}
-      {/*</FormControl>*/}
+      <FormControl pt={2}>
+        <FormLabel>自定义data - 原始字符</FormLabel>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Input type='text' value={oriData} onChange={e => setOriData(e.target.value)} placeholder="非必填，原始字符串" />
+          <Button ml={2} variant='solid' onClick={stringToHex}>
+            转换十六进制
+          </Button>
+        </Box>
+      </FormControl>
 
       <FormControl pt={2}>
-        <FormLabel>自定义data</FormLabel>
+        <FormLabel>自定义data - 十六进制</FormLabel>
         <Input type='text' value={hexData} onChange={e => setHexData(e.target.value)} placeholder="非必填，十六进制数据" />
       </FormControl>
 
